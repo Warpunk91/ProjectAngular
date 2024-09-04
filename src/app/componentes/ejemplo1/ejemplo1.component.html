@@ -1,0 +1,59 @@
+<h5>Link actual: {{imagenDelPadre}}</h5>
+<mat-card class="example-card" appearance="outlined">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Shiba Inu</mat-card-title>
+      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="imagenDelPadre ? imagenDelPadre : image" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+        bred for hunting.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="setName()">Ir al lado osucuro</button>
+      <button mat-raised-button (click)="emisor.emit(entrada.value)">SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+  
+  <mat-divider></mat-divider>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Ejemplo de control y lanzamiento de doble via</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Ingrese su nombre</mat-label>
+      <input matInput [(ngModel)]="nombre" #entrada placeholder="Ingrese su nombre completo">
+      <mat-icon matSuffix>fingerprint</mat-icon>
+      <mat-hint>Ingrese su nombre completo</mat-hint>
+    </mat-form-field>
+    <h5>El nombre ingresado es: {{nombre}}</h5>
+    @if(nombre === 'Darth Vader'){
+      <h5>No entres al lado oscuro</h5>
+    }@else {
+      @if(nombre.length > 3){
+        <h5>Hola: {{nombre}}</h5>
+      }
+    }
+    <div *ngIf="nombre==='Darth Vader'">
+      <h5>Jamas retornas de el</h5>
+    </div>
+
+    <ul>
+      @for(item of nombres; track $index){
+        <li>
+          Hola  {{item.nombre}}
+          
+        </li>
+      }
+      <li *ngFor="let iteradora of nombres">
+        Hola desde la forma antigua: {{iteradora.nombre}}
+      </li>
+    </ul>
+
+  </mat-card-content>
+  </mat-card>
